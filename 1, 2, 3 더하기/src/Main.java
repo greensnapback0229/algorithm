@@ -7,9 +7,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        //StringTokenizer st = new StringTokenizer(br.readLine());
-
         
         int N = Integer.parseInt(br.readLine());
         int T[] = new int[N];
@@ -28,7 +25,7 @@ public class Main {
                     dp[i] = dp[i-3] + dp[i-2] + dp[i-1];
                 }
             }
-            bw.write(String.valueOf(dp[T[n]] + "\n"));
+            bw.write(String.format("%d\n", dp[T[n]]));
         }
         
         bw.close();
