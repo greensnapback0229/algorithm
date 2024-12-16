@@ -66,25 +66,24 @@ public class Main {
     }
 
     public static void dfs(Integer init) throws IOException {
-        
-        Stack<Integer> st = new Stack<Integer>();
-
+        Stack<Integer> st = new Stack<>();
         st.push(init);
-
-        int v = init;
-        while(!st.empty()){
-            v = st.pop();
-            visited[v] = true;
-            bw.write(String.format("%d ", v));
-
-            List<Integer> thisEdge = edge.get(v);
-
-            for(Integer i : thisEdge){    
-                if(visited[i] == false) {
-                    st.push(i);
-                    break;
+    
+        while (!st.isEmpty()) {
+            int v = st.pop();
+            if (!visited[v]) {
+                visited[v] = true;
+                bw.write(String.format("%d ", v));
+                
+                List<Integer> thisEdge = edge.get(v);
+                for (int i = thisEdge.size() - 1; i >= 0; i--) {
+                    int next = thisEdge.get(i);
+                    if (!visited[next]) {
+                        st.push(next);
+                    }
                 }
             }
         }
     }
+    
 }
