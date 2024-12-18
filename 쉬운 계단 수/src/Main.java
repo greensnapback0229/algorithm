@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main {
 
+    static int MOD_CONST = 1000000000;
     static Integer dp[][];
 
     public static void main(String[] args) throws Exception {
@@ -12,15 +13,15 @@ public class Main {
         int N = Integer.valueOf(br.readLine());
         dp = new Integer[N+1][10];
         
-        for(int i=0;i<=9;i++){
+        for(int i=0;i<=9;i++) {
             dp[1][i] = 1;
         }
-
+        
         int sum = 0;
-        for(int i=1;i<=9;i++){
-            
-            sum = (sum + recur(N, i)) % 1000000000;
+        for(int i=1;i<=9;i++) {
+            sum = (sum + recur(N, i)) % MOD_CONST;
         }
+        
         bw.write(String.valueOf(sum));
         bw.close();
     }
@@ -32,17 +33,17 @@ public class Main {
         }
 
         if(root == 0) {
-            dp[n][root] = recur(n-1, root+1) % 1000000000;
+            dp[n][root] = recur(n-1, root+1) % MOD_CONST;
             return dp[n][root];
         }
 
         else if(root == 9){
-            dp[n][root] = recur(n-1, root-1) % 1000000000;
-            return dp[n][root];   
+            dp[n][root] = recur(n-1, root-1) % MOD_CONST;
+            return dp[n][root];
         }
 
         else {
-            dp[n][root] = (recur(n-1, root+1) + recur(n-1, root-1))  % 1000000000;
+            dp[n][root] = (recur(n-1, root+1) + recur(n-1, root-1))  % MOD_CONST;
             return dp[n][root];
         }
         
